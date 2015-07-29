@@ -6,34 +6,29 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
     // Now set up the states
     $stateProvider
-        .state('login', {
-            url: '/login',
-            templateUrl: 'login/login.html',
-            controller: 'LoginCtrl'
+        .state('top-list', {
+            url: '/top-list',
+            templateUrl: 'topList/topList.html',
+            controller: 'TopListCtrl'
         })
-        .state('articles-paged', {
-            url: '/articles/:page?',
-            templateUrl: 'articles/articles.html',
-            controller: 'ArticlesCtrl'
+        .state('favorite', {
+            url: '/favorite',
+            templateUrl: 'favorite/favorite.html',
+            controller: 'FavoriteCtrl'
         })
         .state('site-root', {
             url: '/',
-            templateUrl: 'articles/articles.html',
-            controller: 'ArticlesCtrl'
+            templateUrl: 'topList/topList.html',
+            controller: 'TopListCtrl'
         })
-        .state('create-article-page', {
-            url: '/article/create',
-            templateUrl: 'create/create.html',
-            controller: 'NewArticleCtrl'
-        })
-        .state('single-article-page', {
-            url: '/article/:id',
-            templateUrl: 'article/article.html',
-            controller: 'ArticleCtrl'
+        .state('decades', {
+            url: '/decades',
+            templateUrl: 'decades/decades.html',
+            controller: 'DecadesCtrl'
         });
 
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/');
 
 }]);
 
