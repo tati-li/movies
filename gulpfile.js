@@ -121,7 +121,7 @@ gulp.task('appHtml', function () {
   return gulp.src(paths.app.html)
     .pipe(inject(gulp.src(paths.app.templates), {
       transform: function (filepath, file) {
-        return '<script type="text/ng-template" id="' + file.relative + '">' +
+        return '<script type="text/ng-template" id="' + file.relative.replace('\\', '/') + '">' +
           file.contents.toString() + '</script>';
       }
     }))

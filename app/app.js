@@ -2,8 +2,11 @@
 
 var tlMovies = angular.module('tlMovies', ['ui.router']);
 
-tlMovies.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-
+tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+/*    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });*/
     // Now set up the states
     $stateProvider
         .state('top-list', {
@@ -13,13 +16,13 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         })
         .state('favorite', {
             url: '/favorite',
-            templateUrl: 'favorite/favorite.html',
-            controller: 'FavoriteCtrl'
+            templateUrl: 'favorite/favorite.html'
+           // controller: 'FavoriteCtrl'
         })
         .state('site-root', {
             url: '/',
-            templateUrl: 'topList/topList.html',
-            controller: 'TopListCtrl'
+            templateUrl: 'topList/topList.html'
+            //controller: 'TopListCtrl'
         })
         .state('decades', {
             url: '/decades',
@@ -29,6 +32,8 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/');
+
+
 
 }]);
 
