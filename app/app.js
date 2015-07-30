@@ -21,8 +21,8 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', fu
         })
         .state('site-root', {
             url: '/',
-            templateUrl: 'topList/topList.html'
-            //controller: 'TopListCtrl'
+            templateUrl: 'topList/topList.html',
+            controller: 'TopListCtrl'
         })
         .state('decades', {
             url: '/decades',
