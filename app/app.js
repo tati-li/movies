@@ -12,7 +12,7 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', fu
         .state('top-list', {
             url: '/top-list',
             templateUrl: 'topList/topList.html',
-            controller: 'TopListCtrl'
+            controller: 'TopMoviesCtrl'
         })
         .state('favorite', {
             url: '/favorite',
@@ -22,7 +22,7 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', fu
         .state('site-root', {
             url: '/',
             templateUrl: 'topList/topList.html',
-            controller: 'TopListCtrl'
+            controller: 'TopMoviesCtrl'
         })
         .state('decades', {
             url: '/decades',
