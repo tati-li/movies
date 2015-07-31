@@ -19,7 +19,7 @@ tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
 
             var res = $q.defer();
 
-            $http.jsonp('http://www.myapifilms.com/imdb/top?format=JSONP&end=20&data=F&callback=JSON_CALLBACK')
+            $http.jsonp('http://www.myapifilms.com/imdb/top?format=JSONP&end=10&data=F&callback=JSON_CALLBACK')
                 .success(function (result) {
                     console.log('success2: ',result);
                     res.resolve(result);
@@ -30,9 +30,9 @@ tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
                 });
 
             return res.promise;
-        }
+        },
 
-/*        getId: function (id) {
+        getId: function (id) {
 
 
         var res = $q.defer();
@@ -48,7 +48,7 @@ tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
           });
 
         return res.promise;
-      }*/
+      }
 
 
     };

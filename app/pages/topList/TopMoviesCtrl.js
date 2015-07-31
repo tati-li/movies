@@ -1,10 +1,18 @@
 'use strict';
 
-tlMovies.controller('TopListCtrl', ['$scope', 'Movies', function($scope, Movies){
+tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movies){
   Movies.getTop().then(
     function(movies){
       $scope.movies = movies;
-    }
+            movies.forEach(function (item) {
+                Movies.getId(item.idIMDB).then(
+                    function(movie){
+                        item.trailer = movie.trailer;
+                    }
+                );
+
+            });
+        }
   );
 
   $scope.getDirectors = function (directors) {
@@ -16,24 +24,7 @@ tlMovies.controller('TopListCtrl', ['$scope', 'Movies', function($scope, Movies)
 
     return names.join(', ');
   };
-  $scope.getTrailer = function (directors) {
-    var names = [];
-    console.log(directors);
 
-/*    directors.forEach(function (director) {
-      names.push(director.name);
-    });*/
-
-    return names;
-  };
-/*  $scope.getTrailer = function (id) {
-    console.log('tt0111161',id);
-*//*    Movies.getById(id).then(
-      function(movie){
-        return  movie;
-      }
-    );*//*
-  };*/
 
 /*  $scope.getTrailer = Movies.getById('tt0111161').then(
     function(movie){

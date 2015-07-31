@@ -1,5 +1,4 @@
 <h1>top list</h1>
-<p>{{mov}}</p>
 <div class="row" ng-repeat="movie in movies">
     <div class="pull-left"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
     <div class="pull-left">
@@ -16,7 +15,9 @@
 
         <p>Director: <a href="#">{{getDirectors(movie.directors)}}</a></p>
         <p>{{movie.idIMDB}}</p>
-        <p>{{getTrailer(movie.idIMDB)}}</p>
+        <p ng-repeat="trailer in movie.trailer.qualities">
+            <a ng-href="{{trailer.videoURL}}">{{trailer.quality}}</a>
+        </p>
         <p>{{movie.urlPoster}}</p>
         <p>{{movie.urlPoster}}</p>
         <p>{{movie.urlPoster}}</p>
@@ -66,51 +67,3 @@
 
 Все действия со списком избранных фильмов должны сохранятся в локальное хранилище пользователя.
 
-<!--
-'use strict';
-
-tlMovies.controller('TopListCtrl', ['$scope', 'Movies', function($scope, Movies){
-Movies.getTop().then(
-function(movies){
-$scope.movies = movies;
-}
-);
-
-$scope.getDirectors = function (directors) {
-var names = [];
-
-directors.forEach(function (director) {
-names.push(director.name);
-});
-
-return names.join(', ');
-};
-$scope.getTrailer = function (directors) {
-var names = [];
-console.log(directors);
-
-/*    directors.forEach(function (director) {
-names.push(director.name);
-});*/
-
-return names;
-};
-/*  $scope.getTrailer = function (id) {
-console.log('tt0111161',id);
-*//*    Movies.getById(id).then(
-function(movie){
-return  movie;
-}
-);*//*
-};*/
-
-/*  $scope.getTrailer = Movies.getById('tt0111161').then(
-function(movie){
-$scope.mov = movie;
-}
-);*/
-
-
-
-
-}]);-->
