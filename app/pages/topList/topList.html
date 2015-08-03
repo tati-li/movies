@@ -1,4 +1,5 @@
 <h1>top list</h1>
+<p>data: {{film()}}</p>
 <div class="row" ng-repeat="movie in movies">
     <div class="pull-left"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
     <div class="pull-left">
@@ -20,8 +21,7 @@
         </p>
         <p>{{movie.urlPoster}}</p>
         <p>{{movie.urlPoster}}</p>
-        <p>{{movie.urlPoster}}</p>
-        <p>{{movie.urlPoster}}</p>
+        <p>{{film}}</p>
     </div>
 </div>
 

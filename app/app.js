@@ -16,8 +16,8 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', fu
         })
         .state('favorite', {
             url: '/favorite',
-            templateUrl: 'favorite/favorite.html'
-           // controller: 'FavoriteCtrl'
+            templateUrl: 'favorite/favorite.html',
+            controller: 'FavoriteCtrl'
         })
         .state('site-root', {
             url: '/',
