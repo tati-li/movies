@@ -1,6 +1,6 @@
 'use strict';
 
-var tlMovies = angular.module('tlMovies', ['ui.router']);
+var tlMovies = angular.module('tlMovies', ['ui.router', 'nvd3']);
 
 tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 /*    $locationProvider.html5Mode({

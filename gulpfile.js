@@ -34,9 +34,11 @@ var paths = {
         'app/services/**/**/**/**/**/*.js',
       ],
       libs: [
-        'bower_components/d3/d3.min.js',
         'bower_components/angularjs/angular.min.js',
-        'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+        'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        'bower_components/d3/d3.min.js',
+        'bower_components/nvd3/nv.d3.min.js',
+        'bower_components/angular-nvd3/dist/angular-nvd3.min.js'
       ]
     },
     css: [
@@ -46,7 +48,7 @@ var paths = {
       'app/**/**/*.scss',
       'app/**/**/**/*.scss',
       'app/**/**/**/**/*.scss',
-      'app/**/**/**/**/**/*.scss',
+      'app/**/**/**/**/**/*.scss'
     ],
     img: [
       'app/img/*.{png,jpg,jpeg,gif,webp,svg}',

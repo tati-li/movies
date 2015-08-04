@@ -1,7 +1,18 @@
 <h1>favorite</h1>
 
+<p>{{film}}</p>
 
+<form>
+        <label for="d3chart">Show d3 chart</label>
+        <input id="d3chart" type="radio" value="d3" ng-model="chart">
+        <label for="nvd3chart">Show nvd3 chart</label>
+        <input id="nvd3chart" type="radio" value="nvd3" ng-model="chart">
+</form>
 
+<pie ng-if="chart == 'd3'" pie-data="film" pie-width="600"></pie>
+
+<nvd3 ng-if="chart == 'nvd3'" options="options" data="film"></nvd3>
 
 <linear chart-data="film"></linear>
+
 

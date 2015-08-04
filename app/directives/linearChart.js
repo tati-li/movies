@@ -4,15 +4,15 @@ tlMovies.directive('linear', ['$window', function($window){
     scope: {
       chartData: '='
     },
-    template:"<svg width='850' height='200'></svg>",
+    templateUrl: "linechart.html",
     link: function(scope, elem, attrs){
-      var filmsDataToPlot=scope.chartData;
+      var filmsDataToPlot = scope.chartData;
       var padding = 20;
-      var pathClass="path";
+      var pathClass = "path";
       var xScale, yScale, xAxisGen, yAxisGen, lineFun;
 
       var d3 = $window.d3;
-      var rawSvg=elem.find('svg');
+      var rawSvg = elem.find('svg');
       var svg = d3.select(rawSvg[0]);
 
       function setChartParameters(){

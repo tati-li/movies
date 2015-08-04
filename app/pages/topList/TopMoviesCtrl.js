@@ -6,7 +6,7 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
   var yearsArr = [];
 
   $scope.movies.forEach(function (item) {
-    yearsArr.push(item.year);
+      yearsArr.push(Math.floor(item.year / 10) * 10);
   });
 
   $scope.film = function (){
@@ -22,7 +22,7 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
             continue nextInput;
           }
         }
-        result.push({year: year, films: 1});
+        result.push({year: year + '-' + (year+9), films: 1});
       }
     return result;
   };
