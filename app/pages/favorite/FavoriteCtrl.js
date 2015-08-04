@@ -32,7 +32,7 @@ tlMovies.controller('FavoriteCtrl', ['$scope', 'Movies', function($scope, Movies
   $scope.options = {
     chart: {
       type: 'pieChart',
-      height: 500,
+      height: 600,
       x: function (d) {
         return d.yearRange;
       },

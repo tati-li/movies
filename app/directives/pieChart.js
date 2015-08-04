@@ -17,6 +17,7 @@ tlMovies.directive('pie', ['$window', function ($window) {
 
             var vis = svg
                 .append("svg:svg")
+                .attr('class', 'chart-box')
                 .style("width", scope.pieWidth)
                 .style("height", scope.pieWidth)
                 .data([filmsDataToPlot])
@@ -43,7 +44,7 @@ tlMovies.directive('pie', ['$window', function ($window) {
                 d.outerRadius = r;
                 return "translate(" + arc.centroid(d) + ")";
             }).attr("text-anchor", "middle").text(function (d, i) {
-                    return filmsDataToPlot[i].yearRange;
+                    return filmsDataToPlot[i].yearRange + ' (' + filmsDataToPlot[i].films + ')';
                 }
             );
         }
