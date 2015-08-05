@@ -5,7 +5,7 @@ tlMovies.directive('pie', ['$window', function ($window) {
             pieData: '=',
             pieWidth: '='
         },
-        templateUrl: "d3pieChart.html",
+        templateUrl: "pieChart/d3pieChart.html",
         link: function (scope, elem, attrs) {
             var filmsDataToPlot = scope.pieData;
 

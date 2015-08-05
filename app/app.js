@@ -27,7 +27,7 @@ tlMovies.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', fu
         .state('decades', {
             url: '/decades',
             templateUrl: 'decades/decades.html',
-            controller: 'DecadesCtrl'
+            controller: 'DecadeCtrl'
         });
 
     // For any unmatched url, redirect to /state1

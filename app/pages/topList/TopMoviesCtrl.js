@@ -12,7 +12,7 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
   $scope.film = function (){
     var result = [];
     yearsArr.sort();
-    console.log(yearsArr);
+    console.log('film',yearsArr);
     nextInput:
       for (var i = 0; i < yearsArr.length; i++) {
         var year = yearsArr[i];
@@ -25,7 +25,46 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
         result.push({year: year + '-' + (year+9), films: 1});
       }
     return result;
-  };
+  }();
+
+    $scope.favorite = ( localStorage.getItem('favorite') !== null ) ? JSON.parse(localStorage.getItem('favorite')) : [];
+
+    $scope.favorite.forEach(function (item) {
+        $scope.movies.forEach(function (movie) {
+            if (movie.idIMDB == item.idIMDB) {
+                movie.favorite = true;
+            }
+        });
+    });
+
+console.log($scope.favorite);
+    $scope.addFavorite = function(movieInfo){
+
+        $scope.favorite.push(movieInfo);
+        $scope.movies.forEach(function (movie) {
+            if (movie.idIMDB == movieInfo.idIMDB) {
+                movie.favorite = true;
+            }
+        });
+        localStorage.setItem('favorite', JSON.stringify($scope.favorite));
+    };
+
+    $scope.removeFavorite = function(id){
+        $scope.favorite.forEach(function (item, index) {
+
+                if (item.idIMDB == id) {
+                    $scope.favorite.splice(index, 1);
+                }
+
+        });
+        localStorage.setItem('favorite', JSON.stringify($scope.favorite));
+        $scope.movies.forEach(function (movie) {
+            if (movie.idIMDB == id) {
+                movie.favorite = false;
+            }
+        });
+
+    };
 
 /*  function unique(arr) {
     var result = [];

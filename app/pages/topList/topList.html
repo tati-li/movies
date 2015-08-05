@@ -1,9 +1,26 @@
-<h1>top list</h1>
-<p>data: {{film()}}</p>
-<div class="row" ng-repeat="movie in movies">
-    <div class="pull-left"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
+<h1>Top list</h1>
+<div class="row movie-box" ng-repeat="movie in movies">
+    <div class="pull-left poster-box"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
     <div class="pull-left">
-        <h2>{{movie.title}}</h2>
+        <h2 class="movie-title">
+            {{movie.title}}
+            <img class="favorite-ico"
+                 ng-init="itemsrc='img/favorite-ico.png'"
+                 ng-mouseover="itemsrc='img/non-favorite-ico.png'"
+                 ng-mouseout="itemsrc='img/favorite-ico.png'"
+                 ng-if="movie.favorite"
+                 ng-src="{{itemsrc}}"
+                 ng-click="removeFavorite(movie.idIMDB)"
+                 title="Remove from favorite"/>
+            <img class="favorite-ico"
+                 ng-init="itemsrc='img/non-favorite-ico.png'"
+                 ng-mouseover="itemsrc='img/favorite-ico.png'"
+                 ng-mouseout="itemsrc='img/non-favorite-ico.png'"
+                 ng-src="{{itemsrc}}"
+                 ng-if="!movie.favorite"
+                 ng-click="addFavorite(movie)"
+                 title="Add to favorite"/>
+        </h2>
         <p>Year: {{movie.year}}</p>
         <p>Rating: {{movie.rating}}</p>
         <p>Genre: {{movie.genres.join(', ')}}</p>
@@ -19,13 +36,9 @@
         <p ng-repeat="trailer in movie.trailer.qualities">
             <a ng-href="{{trailer.videoURL}}">{{trailer.quality}}</a>
         </p>
-        <p>{{movie.urlPoster}}</p>
-        <p>{{movie.urlPoster}}</p>
-        <p>{{film}}</p>
     </div>
 </div>
 
-<a ui-sref="decades">Decades</a>
 
 
 
