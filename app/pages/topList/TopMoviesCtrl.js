@@ -1,6 +1,6 @@
 'use strict';
 
-tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movies){
+tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', function($scope, Movies, $localStorage){
   $scope.movies = Movies.getData();
 
   var yearsArr = [];
@@ -27,7 +27,9 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
     return result;
   }();
 
-    $scope.favorite = ( localStorage.getItem('favorite') !== null ) ? JSON.parse(localStorage.getItem('favorite')) : [];
+    $scope.favorite = $localStorage.favorite || [];
+
+    //$scope.favorite = ( localStorage.getItem('favorite') !== null ) ? JSON.parse(localStorage.getItem('favorite')) : [];
 
     $scope.favorite.forEach(function (item) {
         $scope.movies.forEach(function (movie) {
@@ -36,6 +38,18 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', function($scope, Movie
             }
         });
     });
+
+
+    $scope.$watch('favorite', function() {
+        $localStorage.favorite = $scope.favorite;
+    });
+
+    $scope.$watch(function() {
+        //return angular.toJson($localStorage);
+    }, function() {
+        $scope.favorite = $localStorage.favorite;
+    });
+
 
 console.log($scope.favorite);
     $scope.addFavorite = function(movieInfo){
@@ -46,7 +60,7 @@ console.log($scope.favorite);
                 movie.favorite = true;
             }
         });
-        localStorage.setItem('favorite', JSON.stringify($scope.favorite));
+       // localStorage.setItem('favorite', JSON.stringify($scope.favorite));
     };
 
     $scope.removeFavorite = function(id){
@@ -57,7 +71,7 @@ console.log($scope.favorite);
                 }
 
         });
-        localStorage.setItem('favorite', JSON.stringify($scope.favorite));
+       // localStorage.setItem('favorite', JSON.stringify($scope.favorite));
         $scope.movies.forEach(function (movie) {
             if (movie.idIMDB == id) {
                 movie.favorite = false;

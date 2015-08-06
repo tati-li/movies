@@ -27,7 +27,7 @@
         <p>Country: {{movie.countries.join(', ')}}</p>
         <p>Director:
             <span ng-repeat="director in movie.directors">
-                <a ng-href="http://www.imdb.com/name/{{director.nameId}}">{{director.name}}</a>{{$last ? '' : ', '}}
+                <a ng-href="http://www.imdb.com/name/{{director.nameId}}" target="_blank">{{director.name}}</a>{{$last ? '' : ', '}}
             </span>
         </p>
 
