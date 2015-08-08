@@ -34,7 +34,8 @@
         <p>Director: <a href="#">{{getDirectors(movie.directors)}}</a></p>
         <p>{{movie.idIMDB}}</p>
         <p ng-repeat="trailer in movie.trailer.qualities">
-            <a ng-href="{{trailer.videoURL}}">{{trailer.quality}}</a>
+            <button type="button" class="btn btn-default" ng-click="openVideo(trailer.videoURL)">{{trailer.quality}}</button>
+            <button type="button"><a ng-href="{{trailer.videoURL}}">{{trailer.quality}}</a></button>
         </p>
     </div>
 </div>

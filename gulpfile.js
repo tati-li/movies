@@ -39,7 +39,9 @@ var paths = {
         'bower_components/d3/d3.min.js',
         'bower_components/nvd3/nv.d3.min.js',
         'bower_components/angular-nvd3/dist/angular-nvd3.min.js',
-        'bower_components/ngstorage/ngStorage.min.js'
+        'bower_components/ngstorage/ngStorage.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'
       ]
     },
     css: [

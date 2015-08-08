@@ -1,13 +1,59 @@
 'use strict';
 
-tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', function($scope, Movies, $localStorage){
-  $scope.movies = Movies.getData();
+tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', '$modal', function($scope, Movies, $localStorage, $modal){
+    Movies.getTop().then(
+    function(movies){
+      $scope.movies = movies;
+
+      console.log('mov',movies);
+      $scope.favorite.forEach(function (item) {
+        $scope.movies.forEach(function (movie) {
+          if (movie.idIMDB == item.idIMDB) {
+            movie.favorite = true;
+          }
+        });
+      });
+/*      $scope.movies.forEach(function (item) {
+        yearsArr.push(Math.floor(item.year / 10) * 10);
+      });*/
+      movies.forEach(function (item) {
+        Movies.getId(item.idIMDB).then(
+          function(movie){
+            item.trailer = movie.trailer;
+          }
+        );
+
+      });
+    }
+  );
+
+
+
+  $scope.openVideo = function (videoUrl) {
+    var modalInstance = $modal.open({
+      templateUrl: 'topList/trailerVideo.html',
+      //controller: 'trailerModalCtrl',
+      resolve: {
+        url: function () {
+          return videoUrl;
+        }
+      }
+    });
+
+    modalInstance.result.then(function () {
+
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  //$scope.movies = Movies.getData();
 
   var yearsArr = [];
 
-  $scope.movies.forEach(function (item) {
+/*  $scope.movies.forEach(function (item) {
       yearsArr.push(Math.floor(item.year / 10) * 10);
-  });
+  });*/
 
   $scope.film = function (){
     var result = [];
@@ -29,15 +75,17 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', funct
 
     $scope.favorite = $localStorage.favorite || [];
 
+  console.log('favorite',$scope.favorite);
+
     //$scope.favorite = ( localStorage.getItem('favorite') !== null ) ? JSON.parse(localStorage.getItem('favorite')) : [];
 
-    $scope.favorite.forEach(function (item) {
+    /*$scope.favorite.forEach(function (item) {
         $scope.movies.forEach(function (movie) {
             if (movie.idIMDB == item.idIMDB) {
                 movie.favorite = true;
             }
         });
-    });
+    });*/
 
 
     $scope.$watch('favorite', function() {
