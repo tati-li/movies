@@ -19,7 +19,7 @@ tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
 
             var res = $q.defer();
 
-            $http.jsonp('http://www.myapifilms.com/imdb/top?format=JSONP&end=1&data=F&callback=JSON_CALLBACK')
+            $http.jsonp('http://www.myapifilms.com/imdb/top?format=JSONP&end=3&data=F&callback=JSON_CALLBACK')
                 .success(function (result) {
                     console.log('success2: ',result);
                     res.resolve(result);

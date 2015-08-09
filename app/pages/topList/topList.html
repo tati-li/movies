@@ -21,10 +21,15 @@
                  ng-click="addFavorite(movie)"
                  title="Add to favorite"/>
         </h2>
+
         <p>Year: {{movie.year}}</p>
+
         <p>Rating: {{movie.rating}}</p>
+
         <p>Genre: {{movie.genres.join(', ')}}</p>
+
         <p>Country: {{movie.countries.join(', ')}}</p>
+
         <p>Director:
             <span ng-repeat="director in movie.directors">
                 <a ng-href="http://www.imdb.com/name/{{director.nameId}}" target="_blank">{{director.name}}</a>{{$last ? '' : ', '}}
@@ -32,15 +37,21 @@
         </p>
 
         <p>Director: <a href="#">{{getDirectors(movie.directors)}}</a></p>
+
         <p>{{movie.idIMDB}}</p>
-        <p ng-repeat="trailer in movie.trailer.qualities">
-            <button type="button" class="btn btn-default" ng-click="openVideo(trailer.videoURL)">{{trailer.quality}}</button>
-            <button type="button"><a ng-href="{{trailer.videoURL}}">{{trailer.quality}}</a></button>
+
+        <p>Trailers:
+            <img class="preloader-ico"
+                 ng-if="!movie.trailer.qualities"
+                 ng-src="img/preloader.gif"/>
+            <span ng-repeat="trailer in movie.trailer.qualities">
+                <button type="button" class="btn btn-info"
+                        ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
+                </button>
+            </span>
         </p>
     </div>
 </div>
-
-
 
 
 <!--

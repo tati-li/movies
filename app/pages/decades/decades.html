@@ -12,6 +12,6 @@
 
 </form>
 
-<pie ng-if="chart == 'd3'" pie-data="film" pie-width="600"></pie>
+<pie ng-if="chart == 'd3' && film" pie-data="film" pie-width="600"></pie>
 
-<nvd3 ng-if="chart == 'nvd3'" options="options" data="film"></nvd3>
+<nvd3 ng-if="chart == 'nvd3' && film" options="options" data="film"></nvd3>

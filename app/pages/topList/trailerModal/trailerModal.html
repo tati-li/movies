@@ -1,8 +1,12 @@
+<!--
+<trailer-modal video-url="{{trailer.videoURL}}"></trailer-modal>-->
 <div class="modal-header">
-    <h3 class="modal-title">Trailer Video</h3>
+    {{name}}
 </div>
 <div class="modal-body">
-    <iframe width="420" height="345" ng-src='{{videoUrl}}'></iframe>
+
+    <iframe ng-src="{{url}}" width="{{width}}" height="{{height}}" frameborder="no" scrolling="no"/>
+
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
