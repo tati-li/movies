@@ -6,13 +6,13 @@ tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', '$mod
       $scope.movies = movies;
 
       console.log('mov', movies);
-      $scope.favorite.forEach(function (item) {
+      /*$scope.favorite.forEach(function (item) {
         $scope.movies.forEach(function (movie) {
           if (movie.idIMDB == item.idIMDB) {
             movie.favorite = true;
           }
         });
-      });
+      });*/
       /*      $scope.movies.forEach(function (item) {
        yearsArr.push(Math.floor(item.year / 10) * 10);
        });*/

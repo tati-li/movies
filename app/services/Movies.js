@@ -1,6 +1,6 @@
 "use strict";
 
-tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
+tlMovies.service('Movies', ['$q', '$http', '$localStorage', function ($q, $http, $localStorage) {
 
     return {
 
@@ -13,7 +13,19 @@ tlMovies.service('Movies', ['$q', '$http', function ($q, $http) {
             if (!window.myapifilms) {
               window.myapifilms = function (data) {
                 window.tlMoviesList = data;
-                console.log('myapi ',data);
+                window.tlMoviesList.forEach(function(movie) {
+                  movie.favorite = false;
+                  $localStorage.favorite.forEach(function (favorite) {
+
+                       if (movie.idIMDB == favorite.idIMDB) {
+                         movie.favorite = true;
+                         return;
+                       }
+
+                  })
+                });
+                console.log('myapi ',window.tlMoviesList);
+
               }
             }
 
