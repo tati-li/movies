@@ -1,37 +1,37 @@
 <h1>Favorite list</h1>
-<div class="row movie-box" ng-repeat="favorite in favorites">
-    <div class="pull-left poster-box"><img ng-src="{{favorite.urlPoster}}" alt="{{favorite.title}}"/></div>
+<div class="row movie-box" ng-repeat="movie in favoriteCtrl.favorite">
+    <div class="pull-left poster-box"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
     <div class="pull-left">
         <h2 class="movie-title">
-            {{favorite.title}}
+            {{movie.title}}
             <img class="favorite-ico"
                  ng-init="itemsrc='img/favorite-ico.png'"
                  ng-mouseover="itemsrc='img/non-favorite-ico.png'"
                  ng-mouseout="itemsrc='img/favorite-ico.png'"
                  ng-src="{{itemsrc}}"
-                 ng-click="removeFavorite(favorite.idIMDB)"
+                 ng-click="favoriteCtrl.removeFavorite(movie.idIMDB)"
                  title="Remove from favorite"/>
         </h2>
 
-        <p>Year: {{favorite.year}}</p>
+        <p>Year: {{movie.year}}</p>
 
-        <p>Rating: {{favorite.rating}}</p>
+        <p>Rating: {{movie.rating}}</p>
 
-        <p>Genre: {{favorite.genres.join(', ')}}</p>
+        <p>Genre: {{movie.genres.join(', ')}}</p>
 
-        <p>Country: {{favorite.countries.join(', ')}}</p>
+        <p>Country: {{movie.countries.join(', ')}}</p>
 
         <p>Director:
-            <span ng-repeat="director in favorite.directors">
+            <span ng-repeat="director in movie.directors">
                 <a ng-href="http://www.imdb.com/name/{{director.nameId}}">{{director.name}}</a>{{$last ? '' : ', '}}
             </span>
         </p>
 
         <p>Trailers:
             <img class="preloader-ico"
-                 ng-if="!favorite.trailer.qualities"
+                 ng-if="!movie.trailer.qualities"
                  ng-src="img/preloader.gif"/>
-            <span ng-repeat="trailer in favorite.trailer.qualities">
+            <span ng-repeat="trailer in movie.trailer.qualities">
                 <button type="button" class="btn btn-info"
                         ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
                 </button>

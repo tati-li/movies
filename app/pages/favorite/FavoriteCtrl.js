@@ -1,30 +1,26 @@
 'use strict';
 
-tlMovies.controller('FavoriteCtrl', ['$scope', 'Movies', '$localStorage', function ($scope, Movies, $localStorage) {
-  $scope.favorites = $localStorage.favorite || [];
+function FavoriteCtrl ($scope, $localStorage, $modal) {
 
-  $scope.$watch('favorite', function () {
-    $localStorage.favorite = $scope.favorites;
-  });
+  OpenModalCtrl.apply(this, [$scope, $modal]);
 
-  $scope.$watch(function () {
-    //return angular.toJson($localStorage);
-  }, function () {
-    $scope.favorites = $localStorage.favorite;
-  });
+  this.$localStorage = $localStorage;
+  this.$scope        = $scope;
 
-  // $scope.favorites = ( localStorage.getItem('favorite') !== null ) ? JSON.parse(localStorage.getItem('favorite')) : [];
+  this.initFavorite();
 
-  $scope.removeFavorite = function (id) {
-    $scope.favorites.forEach(function (item, index) {
+}
 
-      if (item.idIMDB == id) {
-        $scope.favorites.splice(index, 1);
-      }
+FavoriteCtrl.prototype = Object.create(AbstractMovieCtrl.prototype);
 
-    });
-    // localStorage.setItem('favorite', JSON.stringify($scope.favorites));
-  };
+FavoriteCtrl.prototype.removeFavorite = function (id) {
 
+  this.favorite.forEach(function (item, index) {
+    if (item.idIMDB == id) {
+      this.favorite.splice(index, 1);
+    }
+  }.bind(this));
 
-}]);
+};
+
+tlMovies.controller('FavoriteCtrl', ['$scope', '$localStorage', '$modal', FavoriteCtrl]);
