@@ -22,12 +22,17 @@ function TopMoviesCtrl ($scope, Movies, $localStorage, $modal) {
           console.log(index, item);
           this.getMovieInfo(item);
         } else {
-          var _timer = setTimeout(function(){
+          /*(function timerLoadInfo() {
+            console.log('timeout', index, item);
+            return (index == movies.length-1) ? false :setTimeout(timerLoadInfo,1000);
+          })();*/
+
+          /*var _timer = setTimeout(function(){
             clearInterval(_timer);
             console.log('timeout', index, item);
             this.getMovieInfo(item);
 
-          }.bind(this),5000);
+          }.bind(this),5000);*/
 
         }
       }.bind(this));
