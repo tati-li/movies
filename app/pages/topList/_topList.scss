@@ -3,16 +3,29 @@
 }
 
 .poster-box {
-  margin-right: 30px;
+  padding-right: 30px;
+  width: 30%;
+  .poster-img {
+    width: 100%;
+  }
+}
+
+.movie-info-box {
+  width: 70%;
 }
 
 .movie-title {
   line-height: 45px;
+  margin-top: 0;
 }
 
-.favorite-ico {
-  width: 40px;
-  cursor: pointer;
+.favorite-btn {
+  border: none;
+  background-color: initial;
+  outline: none;
+  .favorite-ico {
+    width: 40px;
+  }
 }
 
 .preloader-ico {

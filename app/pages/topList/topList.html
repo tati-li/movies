@@ -1,56 +1,62 @@
-<h1>Top list</h1>
-<div ng-show="topMoviesCtrl.isReady">
-    <div class="row movie-box" ng-repeat="movie in topMoviesCtrl.movies">
-        <div class="pull-left poster-box"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
-        <div class="pull-left">
-            <h2 class="movie-title">
-                {{movie.title}}
-                <img class="favorite-ico"
-                     ng-init="itemsrc='img/favorite-ico.png'"
-                     ng-mouseover="itemsrc='img/non-favorite-ico.png'"
-                     ng-mouseout="itemsrc='img/favorite-ico.png'"
-                     ng-if="movie.favorite"
-                     ng-src="{{itemsrc}}"
-                     ng-click="topMoviesCtrl.removeFavorite(movie.idIMDB)"
-                     title="Remove from favorite"/>
-                <img class="favorite-ico"
-                     ng-init="itemsrc='img/non-favorite-ico.png'"
-                     ng-mouseover="itemsrc='img/favorite-ico.png'"
-                     ng-mouseout="itemsrc='img/non-favorite-ico.png'"
-                     ng-src="{{itemsrc}}"
-                     ng-if="!movie.favorite"
-                     ng-click="topMoviesCtrl.addFavorite(movie)"
-                     title="Add to favorite"/>
-            </h2>
-
-            <p>Year: {{movie.year}}</p>
-
-            <p>Rating: {{movie.rating}}</p>
-
-            <p>Genre: {{movie.genres.join(', ')}}</p>
-
-            <p>Country: {{movie.countries.join(', ')}}</p>
-
-            <p>Director:
-                <span ng-repeat="director in movie.directors">
-                    <a ng-href="http://www.imdb.com/name/{{director.nameId}}" target="_blank">{{director.name}}</a>{{$last ? '' : ', '}}
-                </span>
-            </p>
-
-            <p>Director: <a href="#">{{getDirectors(movie.directors)}}</a></p>
-
-            <p>{{movie.idIMDB}}</p>
-
-            <p>Trailers:
-                <img class="preloader-ico"
-                     ng-if="!movie.trailer.qualities"
-                     ng-src="img/preloader.gif"/>
-                <span ng-repeat="trailer in movie.trailer.qualities">
-                    <button type="button" class="btn btn-info"
-                            ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
+<div class="container">
+    <h1>Top list</h1>
+    <div ng-show="topMoviesCtrl.isReady">
+        <div class="row movie-box" ng-repeat="movie in topMoviesCtrl.movies">
+            <div class="pull-left poster-box">
+                <img ng-src="{{movie.urlPoster}}" class="poster-img" alt="{{movie.title}}" title="{{movie.title}}"/>
+            </div>
+            <div class="pull-left movie-info-box">
+                <h2 class="movie-title">
+                    {{movie.title}}
+                    <button type="button" class="favorite-btn" ng-if="movie.favorite">
+                        <img class="favorite-ico"
+                           ng-init="itemsrc='img/favorite-ico.png'"
+                           ng-mouseover="itemsrc='img/non-favorite-ico.png'"
+                           ng-mouseout="itemsrc='img/favorite-ico.png'"
+                           ng-src="{{itemsrc}}"
+                           ng-click="topMoviesCtrl.removeFavorite(movie.idIMDB)"
+                           title="Remove from favorite"/>
                     </button>
-                </span>
-            </p>
+                    <button type="button" class="favorite-btn" ng-if="!movie.favorite">
+                        <img class="favorite-ico"
+                             ng-init="itemsrc='img/non-favorite-ico.png'"
+                             ng-mouseover="itemsrc='img/favorite-ico.png'"
+                             ng-mouseout="itemsrc='img/non-favorite-ico.png'"
+                             ng-src="{{itemsrc}}"
+                             ng-click="topMoviesCtrl.addFavorite(movie)"
+                             title="Add to favorite"/>
+                    </button>
+                </h2>
+
+                <p>Year: {{movie.year}}</p>
+
+                <p>Rating: {{movie.rating}}</p>
+
+                <p>Genre: {{movie.genres.join(', ')}}</p>
+
+                <p>Country: {{movie.countries.join(', ')}}</p>
+
+                <p>Director:
+                    <span ng-repeat="director in movie.directors">
+                        <a ng-href="http://www.imdb.com/name/{{director.nameId}}" target="_blank">{{director.name}}</a>{{$last ? '' : ', '}}
+                    </span>
+                </p>
+
+                <p>Director: <a href="#">{{getDirectors(movie.directors)}}</a></p>
+
+                <p>{{movie.idIMDB}}</p>
+
+                <p>Trailers:
+                    <img class="preloader-ico"
+                         ng-if="!movie.trailer"
+                         ng-src="img/preloader.gif"/>
+                    <span ng-repeat="trailer in movie.trailer.qualities">
+                        <button type="button" class="btn btn-info"
+                                ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
+                        </button>
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
 </div>
@@ -58,23 +64,4 @@
     <img class="page-preloader-ico"
          ng-src="img/preloader.gif"/>
 </div>
-
-
-
-Задание:
-Используя сервис работы с IMDB - http://www.myapifilms.com/ (или любой другой на выбор) создать web app из 3 страниц/табиков: топ 20 лучших фильмов, фильмы по десятилетиям (график) и избранные фильмы
-
-Страница 20-ти лучших фильмов:
-- в списке лучших фильмов выводятся фильмы со следующей информацией: постер, название, год, рейтинг, жанр, страна, режиссер (при клике на имя происходит переход на страничку режиссера на сайте imdb.com)
-- для каждого фильма выводятся кнопки при нажатии на которые открывается поп-ап с трейлером фильма (если есть трейлер в нескольких качествах нужно выводить несколько кнопок)
-- пользователь может отметить каждый фильм как избранный и это должно сохранится в локальном хранилище и в списке фильмов должна быть видна эта отметка
-
-Страница фильмов по десятилетиям:
-- должен выводится график (pie, donut или любой другой), который будет показывать количество фильмов по десятилетиям (первый год это год самого старого фильма в топ 20 фильмов, последний год - самого нового)
-
-Страница избранных фильмов:
-- пользователь видит список фильмов, которые он отметил как избранные (информация о фильме выводится такая же как и в списке фильмов)
-- пользователь может убрать фильм из списка
-
-Все действия со списком избранных фильмов должны сохранятся в локальное хранилище пользователя.
 

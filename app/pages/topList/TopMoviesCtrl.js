@@ -18,10 +18,14 @@ function TopMoviesCtrl ($scope, Movies, $localStorage, $modal) {
 
       movies.forEach(function (item, index) {
 
-        if (index < 2) {
+        if (index < 3) {
           console.log(index, item);
           this.getMovieInfo(item);
         } else {
+          setTimeout(function () {
+            console.log(index, item);
+            this.getMovieInfo(item);
+          }.bind(this), index* 1500);
           /*(function timerLoadInfo() {
             console.log('timeout', index, item);
             return (index == movies.length-1) ? false :setTimeout(timerLoadInfo,1000);

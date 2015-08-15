@@ -1,7 +1,5 @@
 'use strict';
 function OpenModalCtrl ($scope, $modal) {
-
-
   $scope.openVideo = function (videoName, videoUrl, width, height) {
     var modalInstance = $modal.open({
       templateUrl: 'topList/trailerModal/trailerModal.html',

@@ -1,41 +1,47 @@
-<h1>Favorite list</h1>
-<div class="row movie-box" ng-repeat="movie in favoriteCtrl.favorite">
-    <div class="pull-left poster-box"><img ng-src="{{movie.urlPoster}}" alt="{{movie.title}}"/></div>
-    <div class="pull-left">
-        <h2 class="movie-title">
-            {{movie.title}}
-            <img class="favorite-ico"
-                 ng-init="itemsrc='img/favorite-ico.png'"
-                 ng-mouseover="itemsrc='img/non-favorite-ico.png'"
-                 ng-mouseout="itemsrc='img/favorite-ico.png'"
-                 ng-src="{{itemsrc}}"
-                 ng-click="favoriteCtrl.removeFavorite(movie.idIMDB)"
-                 title="Remove from favorite"/>
-        </h2>
-
-        <p>Year: {{movie.year}}</p>
-
-        <p>Rating: {{movie.rating}}</p>
-
-        <p>Genre: {{movie.genres.join(', ')}}</p>
-
-        <p>Country: {{movie.countries.join(', ')}}</p>
-
-        <p>Director:
-            <span ng-repeat="director in movie.directors">
-                <a ng-href="http://www.imdb.com/name/{{director.nameId}}">{{director.name}}</a>{{$last ? '' : ', '}}
-            </span>
-        </p>
-
-        <p>Trailers:
-            <img class="preloader-ico"
-                 ng-if="!movie.trailer.qualities"
-                 ng-src="img/preloader.gif"/>
-            <span ng-repeat="trailer in movie.trailer.qualities">
-                <button type="button" class="btn btn-info"
-                        ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
+<div class="container">
+    <h1>Favorite list</h1>
+    <div class="row movie-box" ng-repeat="movie in favoriteCtrl.favorite">
+        <div class="pull-left poster-box">
+            <img ng-src="{{movie.urlPoster}}" class="poster-img" alt="{{movie.title}}" title="{{movie.title}}"/>
+        </div>
+        <div class="pull-left movie-info-box">
+            <h2 class="movie-title">
+                {{movie.title}}
+                <button type="button" class="favorite-btn">
+                    <img class="favorite-ico"
+                         ng-init="itemsrc='img/favorite-ico.png'"
+                         ng-mouseover="itemsrc='img/non-favorite-ico.png'"
+                         ng-mouseout="itemsrc='img/favorite-ico.png'"
+                         ng-src="{{itemsrc}}"
+                         ng-click="favoriteCtrl.removeFavorite(movie.idIMDB)"
+                         title="Remove from favorite"/>
                 </button>
-            </span>
-        </p>
+            </h2>
+
+            <p>Year: {{movie.year}}</p>
+
+            <p>Rating: {{movie.rating}}</p>
+
+            <p>Genre: {{movie.genres.join(', ')}}</p>
+
+            <p>Country: {{movie.countries.join(', ')}}</p>
+
+            <p>Director:
+                <span ng-repeat="director in movie.directors">
+                    <a ng-href="http://www.imdb.com/name/{{director.nameId}}">{{director.name}}</a>{{$last ? '' : ', '}}
+                </span>
+            </p>
+
+            <p>Trailers:
+                <img class="preloader-ico"
+                     ng-if="!movie.trailer.qualities"
+                     ng-src="img/preloader.gif"/>
+                <span ng-repeat="trailer in movie.trailer.qualities">
+                    <button type="button" class="btn btn-info"
+                            ng-click="openVideo(movie.title,trailer.videoURL, 480, 270)">{{trailer.quality}}
+                    </button>
+                </span>
+            </p>
+        </div>
     </div>
 </div>

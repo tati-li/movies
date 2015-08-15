@@ -2,7 +2,6 @@
 
 function AbstractMovieCtrl () {
 
-
 }
 
 AbstractMovieCtrl.prototype.initFavorite = function () {
