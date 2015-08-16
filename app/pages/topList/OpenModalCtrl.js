@@ -27,5 +27,4 @@ function OpenModalCtrl ($scope, $modal) {
     });
   };
 }
-//tlMovies.controller('OpenModalCtrl', ['$scope', '$modal', OpenModalCtrl]);
 

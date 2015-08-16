@@ -4,13 +4,10 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $imgPath: "/front/build/img/";
 
+// Libs partials
 @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
 @import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
-
 @import '../bower_components/nvd3/nv.d3.min.css';
-
-// Libs partials
-
 
 // App partials
 @import 'pages/decades/decades';

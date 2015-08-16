@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Top list</h1>
-    <div ng-show="topMoviesCtrl.isReady">
-        <div class="row movie-box" ng-repeat="movie in topMoviesCtrl.movies">
+    <div ng-show="topListCtrl.isReady">
+        <div class="row movie-box" ng-repeat="movie in topListCtrl.movies">
             <div class="pull-left poster-box">
                 <img ng-src="{{movie.urlPoster}}" class="poster-img" alt="{{movie.title}}" title="{{movie.title}}"/>
             </div>
@@ -14,7 +14,7 @@
                            ng-mouseover="itemsrc='img/non-favorite-ico.png'"
                            ng-mouseout="itemsrc='img/favorite-ico.png'"
                            ng-src="{{itemsrc}}"
-                           ng-click="topMoviesCtrl.removeFavorite(movie.idIMDB)"
+                           ng-click="topListCtrl.removeFavorite(movie.idIMDB)"
                            title="Remove from favorite"/>
                     </button>
                     <button type="button" class="favorite-btn" ng-if="!movie.favorite">
@@ -23,7 +23,7 @@
                              ng-mouseover="itemsrc='img/favorite-ico.png'"
                              ng-mouseout="itemsrc='img/non-favorite-ico.png'"
                              ng-src="{{itemsrc}}"
-                             ng-click="topMoviesCtrl.addFavorite(movie)"
+                             ng-click="topListCtrl.addFavorite(movie)"
                              title="Add to favorite"/>
                     </button>
                 </h2>
@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-<div class="preloader-box" ng-hide="topMoviesCtrl.isReady">
+<div class="preloader-box" ng-hide="topListCtrl.isReady">
     <img class="page-preloader-ico"
          ng-src="img/preloader.gif"/>
 </div>

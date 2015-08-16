@@ -1,6 +1,6 @@
 'use strict';
 
-function TopMoviesCtrl ($scope, Movies, $localStorage, $modal) {
+function TopListCtrl ($scope, Movies, $localStorage, $modal) {
 
   OpenModalCtrl.apply(this, [$scope, $modal]);
 
@@ -26,18 +26,6 @@ function TopMoviesCtrl ($scope, Movies, $localStorage, $modal) {
             console.log(index, item);
             this.getMovieInfo(item);
           }.bind(this), index* 1500);
-          /*(function timerLoadInfo() {
-            console.log('timeout', index, item);
-            return (index == movies.length-1) ? false :setTimeout(timerLoadInfo,1000);
-          })();*/
-
-          /*var _timer = setTimeout(function(){
-            clearInterval(_timer);
-            console.log('timeout', index, item);
-            this.getMovieInfo(item);
-
-          }.bind(this),5000);*/
-
         }
       }.bind(this));
 
@@ -45,17 +33,17 @@ function TopMoviesCtrl ($scope, Movies, $localStorage, $modal) {
   );
 }
 
-TopMoviesCtrl.prototype = Object.create(AbstractMovieCtrl.prototype);
+TopListCtrl.prototype = Object.create(AbstractMovieCtrl.prototype);
 
-TopMoviesCtrl.prototype.getMovieInfo =  function (item) {
-  this.Movies.getId(item.idIMDB).then(
+TopListCtrl.prototype.getMovieInfo =  function (item) {
+  this.Movies.getById(item.idIMDB).then(
     function (movie) {
       item.trailer = movie.trailer;
     }
   );
-}
+};
 
-TopMoviesCtrl.prototype.addFavorite = function (movieInfo) {
+TopListCtrl.prototype.addFavorite = function (movieInfo) {
   console.log('add', movieInfo);
   this.favorite.push(movieInfo);
   this.movies.forEach(function (movie) {
@@ -66,7 +54,7 @@ TopMoviesCtrl.prototype.addFavorite = function (movieInfo) {
 
 };
 
-TopMoviesCtrl.prototype.removeFavorite = function (id) {
+TopListCtrl.prototype.removeFavorite = function (id) {
 
   this.favorite.forEach(function (item, index) {
     if (item.idIMDB == id) {
@@ -82,4 +70,4 @@ TopMoviesCtrl.prototype.removeFavorite = function (id) {
 
 };
 
-tlMovies.controller('TopMoviesCtrl', ['$scope', 'Movies', '$localStorage', '$modal', TopMoviesCtrl]);
+tlMovies.controller('TopListCtrl', ['$scope', 'Movies', '$localStorage', '$modal', TopListCtrl]);

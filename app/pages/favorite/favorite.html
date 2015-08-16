@@ -34,7 +34,7 @@
 
             <p>Trailers:
                 <img class="preloader-ico"
-                     ng-if="!movie.trailer.qualities"
+                     ng-if="!movie.trailer"
                      ng-src="img/preloader.gif"/>
                 <span ng-repeat="trailer in movie.trailer.qualities">
                     <button type="button" class="btn btn-info"
