@@ -60,6 +60,9 @@ var paths = {
       'app/img/**/**/*.{png,jpg,jpeg,gif,webp,svg}',
       'app/img/**/**/**/*.{png,jpg,jpeg,gif,webp,svg}'
     ],
+    ico: [
+      'app/*.ico'
+    ],
     html: 'app/index.html',
     templates: [
       'app/directives/*.html',
@@ -87,6 +90,7 @@ var paths = {
     libs: 'build',
     css: 'build',
     img: 'build/img',
+    ico: 'build',
     map: '/'
   }
 };
@@ -124,6 +128,11 @@ gulp.task('appImg', function () {
       .pipe(gulp.dest(paths.dest.img));
 });
 
+gulp.task('appIco', function () {
+  gulp.src(paths.app.ico)
+      .pipe(gulp.dest(paths.dest.ico));
+});
+
 gulp.task('appHtml', function () {
   return gulp.src(paths.app.html)
     .pipe(inject(gulp.src(paths.app.templates), {
@@ -135,16 +144,18 @@ gulp.task('appHtml', function () {
     .pipe(gulp.dest(paths.dest.root));
 });
 
-gulp.task('watch', ['appHtml', 'appScripts', 'appLibs', 'appImg', 'appStyles'], function () {
+gulp.task('watch', ['appHtml', 'appScripts', 'appLibs', 'appImg', 'appIco', 'appStyles'], function () {
   gulp.watch(paths.app.js.app, ['appScripts']);
   gulp.watch(paths.app.js.libs, ['appLibs']);
   gulp.watch(paths.app.css, ['appStyles', 'appImg']);
-  gulp.watch(paths.app.html, ['appHtml', 'appImg']);
+  gulp.watch(paths.app.html, ['appHtml', 'appImg', 'appIco']);
   gulp.watch(paths.app.templates, ['appHtml', 'appImg']);
-  gulp.watch(paths.app.img, ['appImg'])
+  gulp.watch(paths.app.img, ['appImg']);
+  gulp.watch(paths.app.ico, ['appIco'])
 });
 gulp.task('default', [
   'appImg',
+  'appIco',
   'appScripts',
   'appLibs',
   'appStyles',
