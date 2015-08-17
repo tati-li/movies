@@ -2,6 +2,11 @@
 
 function TopListCtrl ($scope, Movies, $localStorage, $modal) {
 
+  /**
+   * Here it is one way of controllers inheritance in AngularJS.
+   * It's even better to call it "mixin" not inheritance due to the app logic, cause OpenModalCtrl is not an abstract
+   * entity, but the container of specific functionality.
+   */
   OpenModalCtrl.apply(this, [$scope, $modal]);
 
   this.$localStorage = $localStorage;
@@ -33,6 +38,9 @@ function TopListCtrl ($scope, Movies, $localStorage, $modal) {
   );
 }
 
+/**
+ * Here we have classical JS OOP style inheritance.
+ */
 TopListCtrl.prototype = Object.create(AbstractMovieCtrl.prototype);
 
 TopListCtrl.prototype.getMovieInfo =  function (item) {

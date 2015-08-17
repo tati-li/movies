@@ -2,6 +2,11 @@
 
 function FavoriteCtrl ($scope, $localStorage, $modal) {
 
+  /**
+   * Here it is one way of controllers inheritance in AngularJS.
+   * It's even better to call it "mixin" not inheritance due to the app logic, cause OpenModalCtrl is not an abstract
+   * entity, but the container of specific functionality.
+   */
   OpenModalCtrl.apply(this, [$scope, $modal]);
 
   this.$localStorage = $localStorage;
@@ -11,6 +16,9 @@ function FavoriteCtrl ($scope, $localStorage, $modal) {
 
 }
 
+/**
+ * Here we have classical JS OOP style inheritance.
+ */
 FavoriteCtrl.prototype = Object.create(AbstractMovieCtrl.prototype);
 
 FavoriteCtrl.prototype.removeFavorite = function (id) {

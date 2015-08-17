@@ -17,13 +17,18 @@ tlMovies.service('Movies', ['$q', '$http', '$localStorage', function ($q, $http,
                  * @param data
                  */
 
-                /*@warning: Top Movies request doesn't have Callback function myapifilms for JSONP.
-                 When I'm trying to get JSON format I have CORS Error: XMLHttpRequest cannot load http://www.myapifilms.com/imdb/top?format=JSON&end=20&data=F. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access.
-                 That is why I should write global function myapifilms (with out it we have an Error:
-                 top?format=JSONP&end=20&data=F&callback=angular.callbacks._0:1 Uncaught ReferenceError: myapifilms is not defined )
-                 At this function I had set global variable 'tlMoviesList' response data of request and added the favorite property from LocalStorage.
-                 Global variable 'tlMoviesList' needed to resolve http request with responseData, because http request is going to error box, not in success (I don't know why)*/
+                /**
+                    @warning
+                    Top Movies request doesn't have callback function myapifilms for JSONP.
 
+                    When I'm trying to get JSON format using $http.get() I have CORS Error:
+                    XMLHttpRequest cannot load http://www.myapifilms.com/imdb/top?format=JSON&end=20&data=F. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access.
+
+                     That is why I should write global function myapifilms (without it we have an Error:
+                     top?format=JSONP&end=20&data=F&callback=angular.callbacks._0:1 Uncaught ReferenceError: myapifilms is not defined )
+                     Inside this function's body I set global variable 'tlMoviesList' for response data and add the favorite property from LocalStorage.
+                     Global variable 'tlMoviesList' is needed for resolving http request with responseData, because http request goes to error box, not in success (I don't know why).
+                 */
                 window.myapifilms = function (data) {
                     window.tlMoviesList = data;
                     window.tlMoviesList.forEach(function (movie) {
@@ -32,7 +37,6 @@ tlMovies.service('Movies', ['$q', '$http', '$localStorage', function ($q, $http,
 
                             if (movie.idIMDB == favorite.idIMDB) {
                                 movie.favorite = true;
-                                return;
                             }
 
                         })
